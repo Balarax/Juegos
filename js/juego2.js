@@ -49,9 +49,9 @@ function DeterminarMayor(cartas) {
 // funcion para comenzar el juego. Recoge los nombres de los jugadores y devuelve las cartas y los resultados del juego
 function jugar() {
     // asigna los nombres a variables
-    player1 = document.getElementById('p1').value;
-    player2 = document.getElementById('p2').value;
-    player3 = document.getElementById('p3').value;
+    var player1 = document.getElementById('p1').value;
+    var player2 = document.getElementById('p2').value;
+    var player3 = document.getElementById('p3').value;
     // purga los nombres por si hay espacios al principio y al final
     player1.trim();
     player2.trim();
@@ -60,6 +60,7 @@ function jugar() {
     var pintaCartas = "";
     // expresion regular para no permitir caracteres especiales
     var comprueba = new RegExp('^\\w+$'); //Si la creamos de esta manera es necesario escapar w dos veces
+    
     // comprueba si falta algun nombre de jugador por introducir o si contiene caracteres no permitidos, en caso de ser asi lanzara un mensaje de error y se deberan volver a introducir
     if (player1 === "" || player2 === "" || player3 === "" || !comprueba.test(player1) || !comprueba.test(player2) || !comprueba.test(player3)) {
         document.getElementById('mensajes').innerHTML = "<span style=color:red>Faltan jugadores o son incorrectos, intentelo de nuevo. Recuerde no usar caracteres especiales</span>";
@@ -116,8 +117,10 @@ function jugar() {
                 pintaCartas += "<span>Parece que ha habido un empate, procediendo a repartir nuevas cartas... </span><br>";
             }
         } while (empate==true);
-    }
+    
 
     document.getElementById('mainScreen').innerHTML = pintaCartas;
     document.getElementById('mensajes').innerHTML = "";
+
+    }
 }
