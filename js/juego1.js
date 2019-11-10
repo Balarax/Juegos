@@ -1,6 +1,6 @@
 
 /*
-Funcion para generar la palabra Aleatoria, se ejecuta a través del evento onload="GenerarPalabraAleatoria(); en la etiqueta body
+Funcion para generar la palabra Aleatoria, se ejecuta a través del evento onload="GenerarPalabraAleatoria(); en la etiqueta body;
 NOTA LA ETIQUETA QUE MUESTRA EL RESULTADO DE ESTA FUNCION ESTA COMO "HIDDEN";
 @version 1.0
 */
@@ -15,7 +15,7 @@ function GenerarPalabraAleatoria() {
 }
 
 /*
-Funcion para controlar que solo se ha introducido una letra, se ejecuta a través del evento onchange="FiltroSoloUnaLetra(); en la primera etiqueta <input>
+Funcion para controlar que solo se ha introducido una letra, se ejecuta a través del evento onchange="FiltroSoloUnaLetra(); en la primera etiqueta <input>;
 @return Devuelve la letra validada;
 @version 1.0
 */
@@ -35,7 +35,7 @@ function FiltroSoloUnaLetra(letra) {
 }
 
 /*
-Funcion para ver si una letra se encuentra en una palabra
+Funcion para ver si una letra se encuentra en una palabra;
 @version 1.0
 */
 
