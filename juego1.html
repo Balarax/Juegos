@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="js/juego1.js"></script>
+</head>
+
+<body onload="GenerarPalabraAleatoria();">
+
+    <h1>¡Bienvendo al juego de adivinar las palabras!</h1>
+
+    <p> Introduce una letra:
+        <input type="text" name="text" id="letra" size="5px" onchange="FiltroSoloUnaLetra(document.getElementById('letra').value);"></p><br>
+        <p style="color:red" id="alerta"></p><br>
+
+    <p id="palabra"></p>
+
+    <p id="encontrada"></p><br>
+
+    <button onclick="BuscarLetra();">Buscar</button>
+
+</body>
+
+</html>
