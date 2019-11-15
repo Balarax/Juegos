@@ -8,6 +8,7 @@ var intentos = 10;
 var primera = true;
 var letrasArray = new Array();
 var ganas = false;
+var PalabraAleatoria = 0;
 
 function GenerarPalabraAleatoria() {
     palabras = new Array("acarrear", "acogedor", "atrevido", "celebrar", "creencia", "diputado", "dolorido", "grabador", "molestar", "suciedad");
@@ -57,15 +58,15 @@ function BuscarLetra() {
     if (valida) {
         document.getElementById('msg').innerHTML = "";
         var aux = compruebaPalabras(letra);
-        ganas = sonIguales(aux,ganas);
+        ganas = sonIguales(aux, ganas);
         document.getElementById('letra').value = "";
     } else {
         document.getElementById('msg').innerHTML = "no existe";
-        
+
     }
-    
+
     primera = false;
-    usadas(letra,letrasArray);
+    usadas(letra, letrasArray);
     if (ganas && intentos > 0) {
         document.getElementById('msg').innerHTML = "Has ganado";
         document.getElementById('cambia').innerHTML = "<a href='juego1.html'>volver a jugar</a>"
@@ -106,9 +107,9 @@ function compruebaPalabras(letra) {
     return descubrir;
 }
 
-function sonIguales(descubrir,ganas) {
+function sonIguales(descubrir, ganas) {
     var secreta = document.getElementById('palabra').innerHTML;
-    
+
     if (descubrir == secreta) {
         document.getElementById('palabraOculta').innerHTML = secreta;
         ganas = true;
@@ -118,16 +119,25 @@ function sonIguales(descubrir,ganas) {
     return ganas;
 }
 // funcion que guarda las letras que ya se han introducido
-function usadas(letra,letrasArray) {
+function usadas(letra, letrasArray) {
     letrasArray.push(letra);
     var informar = "Has usado las siguientes letras: ";
 
     for (let i = 0; i < letrasArray.length; i++) {
-        informar += letrasArray[i] +" ";
+        informar += letrasArray[i] + " ";
     }
     document.getElementById('introducidas').innerHTML = informar;
 }
 
+/* 
+funcion que genera una pista acorde a la palabra
+@version 3.0
+*/
+function VerPista() {
+    var pistas = new Array("Transportar una carga de un lugar a otro.", "Que recibe y acoge en su casa o en su tierra a los visitantes o extranjeros con amabilidad y toda clase de atenciones.", "Que no siente miedo o temor al realizar acciones que comportan riesgo.", "Llevar a cabo actos públicos, como reuniones, ceremonias, espectáculos, etc.", "Idea o pensamiento que se asume como verdadero.", "Persona que ha sido elegida por votación popular para formar parte de una cámara legislativa.", "Que duele, generalmente por estar resentido a causa de un fuerte dolor sentido con anterioridad.", "Que graba o sirve para grabar.", "Hacer [alguien o algo] que una persona o un animal pierda la tranquilidad o el bienestar, obligándole a hacer algo que no desea, impidiéndole que lo realice cómodamente o causándole una impresión desagradable en los sentidos.", "Polvo, basura, manchas o impurezas que hay en algo.");
 
+    document.getElementById('pista').innerHTML = pistas[PalabraAleatoria];
+    document.getElementById('pistaButton').style.display = "none";
+}
 
 

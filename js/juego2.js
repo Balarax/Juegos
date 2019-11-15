@@ -5,6 +5,7 @@ function newGame() {
     pinta += "<p>Jugador1:<input type=text name=p1 id=p1></p><br>";
     pinta += "<p>Jugador2:<input type=text name=p2 id=p2></p><br>";
     pinta += "<p>Jugador3:<input type=text name=p3 id=p3></p><br>";
+    pinta += "<p>Jugador4:<input type=text name=p4 id=p4></p><br>";
     pinta += "</form>";
     pinta += "<button type=button onclick='jugar()'>Jugar</button>";
     document.getElementById('mainScreen').innerHTML = pinta;
@@ -52,17 +53,19 @@ function jugar() {
     var player1 = document.getElementById('p1').value;
     var player2 = document.getElementById('p2').value;
     var player3 = document.getElementById('p3').value;
+    var player4 = document.getElementById('p4').value;
     // purga los nombres por si hay espacios al principio y al final
     player1.trim();
     player2.trim();
     player3.trim();
+    player4.trim();
     // string para lanzar los resultados por pantalla posteriormente
     var pintaCartas = "";
     // expresion regular para no permitir caracteres especiales
     var comprueba = new RegExp('^\\w+$'); //Si la creamos de esta manera es necesario escapar w dos veces
-    
+
     // comprueba si falta algun nombre de jugador por introducir o si contiene caracteres no permitidos, en caso de ser asi lanzara un mensaje de error y se deberan volver a introducir
-    if (player1 === "" || player2 === "" || player3 === "" || !comprueba.test(player1) || !comprueba.test(player2) || !comprueba.test(player3)) {
+    if (player1 === "" || player2 === "" || player3 === "" || player4 === "" || !comprueba.test(player1) || !comprueba.test(player2) || !comprueba.test(player3) || !comprueba.test(player4)) {
         document.getElementById('mensajes').innerHTML = "<span style=color:red>Faltan jugadores o son incorrectos, intentelo de nuevo. Recuerde no usar caracteres especiales</span>";
     } else {
 
@@ -72,55 +75,65 @@ function jugar() {
         var cartasP1 = new Array();
         var cartasP2 = new Array();
         var cartasP3 = new Array();
+        var cartasP4 = new Array();
 
         // variables para almacenar la carta mas alta de cada jugador
 
         var mayor1 = 0;
         var mayor2 = 0;
         var mayor3 = 0;
+        var mayor4 = 0;
 
         do {
 
             var empate = true; //Esta variable es por si 
 
-            
+
             // Llamamos a la función para repartir las cartas
 
             RepartirCartas(cartasP1);
             RepartirCartas(cartasP2);
             RepartirCartas(cartasP3);
+            RepartirCartas(cartasP4);
 
             // Llamamos a la función para determinar cuál es la carta mas alta de las dos que se han repartido
 
-             mayor1=DeterminarMayor(cartasP1)
-             mayor2=DeterminarMayor(cartasP2)
-             mayor3=DeterminarMayor(cartasP3)
+            mayor1 = DeterminarMayor(cartasP1);
+            mayor2 = DeterminarMayor(cartasP2);
+            mayor3 = DeterminarMayor(cartasP3);
+            mayor4 = DeterminarMayor(cartasP4);
+
 
 
             // saca los valores de las cartas de cada jugador pon pantalla
             pintaCartas += "Las cartas de <b>" + player1 + "</b> son: " + cartasP1[0] + " y " + cartasP1[1] + "<br>";
             pintaCartas += "Las cartas de <b>" + player2 + "</b> son: " + cartasP2[0] + " y " + cartasP2[1] + "<br>";
             pintaCartas += "Las cartas de <b>" + player3 + "</b> son: " + cartasP3[0] + " y " + cartasP3[1] + "<br>";
+            pintaCartas += "Las cartas de <b>" + player4 + "</b> son: " + cartasP4[0] + " y " + cartasP4[1] + "<br>";
             // comprueba que carta es mayor o si son iguales y envia al ganador
 
-            if (mayor1 > mayor2 && mayor1 > mayor3) {
+            if (mayor1 > mayor2 && mayor1 > mayor3 && mayor1 > mayor4) {
                 empate = false;
                 pintaCartas += "<span style=color:lightgreen>" + player1 + "</span><span> se impone con un " + mayor1 + " sobre los demas jugadores </span>";
             } else if (mayor2 > mayor1 && mayor2 > mayor3) {
                 empate = false;
                 pintaCartas += "<span style=color:lightgreen>" + player2 + "</span><span> se impone con un " + mayor2 + " sobre los demas jugadores </span>";
-            } else if (mayor3 > mayor1 && mayor3 > mayor2) {
+            } else if (mayor3 > mayor1 && mayor3 > mayor2 && mayor3 > mayor4) {
                 empate = false;
                 pintaCartas += "<span style=color:lightgreen>" + player3 + "</span><span> se impone con un " + mayor3 + " sobre los demas jugadores </span>";
+            }else if (mayor4 > mayor1 && mayor4 > mayor2 && mayor4>mayor3) {
+                empate = false;
+                pintaCartas += "<span style=color:lightgreen>" + player4 + "</span><span> se impone con un " + mayor4 + " sobre los demas jugadores </span>";
+
             } else {
                 empate = true;
                 pintaCartas += "<span>Parece que ha habido un empate, procediendo a repartir nuevas cartas... </span><br>";
             }
-        } while (empate==true);
-    
+        } while (empate == true);
 
-    document.getElementById('mainScreen').innerHTML = pintaCartas;
-    document.getElementById('mensajes').innerHTML = "";
+
+        document.getElementById('mainScreen').innerHTML = pintaCartas;
+        document.getElementById('mensajes').innerHTML = "";
 
     }
 }
