@@ -115,13 +115,13 @@ function jugar() {
             if (mayor1 > mayor2 && mayor1 > mayor3 && mayor1 > mayor4) {
                 empate = false;
                 pintaCartas += "<span style=color:lightgreen>" + player1 + "</span><span> se impone con un " + mayor1 + " sobre los demas jugadores </span>";
-            } else if (mayor2 > mayor1 && mayor2 > mayor3) {
+            } else if (mayor2 > mayor1 && mayor2 > mayor3 && mayor2 > mayor4) {
                 empate = false;
                 pintaCartas += "<span style=color:lightgreen>" + player2 + "</span><span> se impone con un " + mayor2 + " sobre los demas jugadores </span>";
             } else if (mayor3 > mayor1 && mayor3 > mayor2 && mayor3 > mayor4) {
                 empate = false;
                 pintaCartas += "<span style=color:lightgreen>" + player3 + "</span><span> se impone con un " + mayor3 + " sobre los demas jugadores </span>";
-            }else if (mayor4 > mayor1 && mayor4 > mayor2 && mayor4>mayor3) {
+            } else if (mayor4 > mayor1 && mayor4 > mayor2 && mayor4 > mayor3) {
                 empate = false;
                 pintaCartas += "<span style=color:lightgreen>" + player4 + "</span><span> se impone con un " + mayor4 + " sobre los demas jugadores </span>";
 
